@@ -17,6 +17,9 @@
 #   reduced some similar functions
 #   comments added
 #   clearer naming for functions an vars
+# v. 0.0.3  2020-11-06
+#    update for ACDSee Pro/Ultimate 2021
+
 
 import configparser
 import os
@@ -44,7 +47,6 @@ def footer(outfile):
 # this one creates nested masterlist of keywords or categories
 # the masterlist of collection is not supported
 def masterlist(outfile, prefix, cfg):
-
     def item(outfile, prefix, d, c):
         outfile.write(f'<{prefix}>\n')
         outfile.write(f'<Name>{prefix}_{d:03d}_{c:06d}</Name>\n')
@@ -57,16 +59,16 @@ def masterlist(outfile, prefix, cfg):
         print()
         numc = 0
         while numc < count:
-            print(f'\rwriting {prefix} masterlist: {numc+1:06d}', end='')
+            print(f'\rwriting {prefix} masterlist: {numc + 1:06d}', end='')
             sys.stdout.flush()
             numd = 0
-            while numd < depth-1:
+            while numd < depth - 1:
                 item(outfile, prefix, numd, numc)
                 outfile.write(f'<{prefix}List>\n')
                 numd += 1
             item(outfile, prefix, numd, numc)
             numd = 0
-            while numd < depth-1:
+            while numd < depth - 1:
                 outfile.write(f'</{prefix}>\n')
                 outfile.write(f'</{prefix}List>\n')
                 numd += 1
@@ -77,7 +79,6 @@ def masterlist(outfile, prefix, cfg):
 
 # creates the assetlist with the folderrootlist
 def assetlist(outfile, cfg):
-
     # add a nested keyword/categorie/collection to the catalogued item
     def list(outfile, prefix, num, depth):
         if num > 0:
@@ -86,7 +87,7 @@ def assetlist(outfile, cfg):
             while numc < num:
                 kwd = f'<Asset{prefix}>'
                 numd = 0
-                while numd < depth-1:
+                while numd < depth - 1:
                     kwd = kwd + f'{prefix}_{numd:03d}_{numc:06d}\\'
                     numd += 1
                 kwd = kwd + f'{prefix}_{numd:03d}_{numc:06d}'
@@ -119,7 +120,7 @@ def assetlist(outfile, cfg):
         print()
         numc = 0
         while numc < count:
-            print(f'\rwriting assets: {numc+1:06d}', end='')
+            print(f'\rwriting assets: {numc + 1:06d}', end='')
             sys.stdout.flush()
             item(outfile, numc, cfg)
             numc += 1
@@ -136,6 +137,7 @@ def assetlist(outfile, cfg):
         outfile.write(f'<DBRootPath>Local\\12345678</DBRootPath>\n')
         outfile.write(f'<VolumeLabel>Volumelabel</VolumeLabel>\n')
         outfile.write(f'<FileSystemType>NTFS</FileSystemType>\n')
+        outfile.write(f'<PNPID></PNPID>\n')
         outfile.write(f'</FolderRoot>\n')
         outfile.write(f'</FolderRootList>\n')
 
@@ -153,6 +155,7 @@ def doit():
     header(outfile, config['main'])
     masterlist(outfile, 'Keyword', config['keywordlist'])
     masterlist(outfile, 'Category', config['categorylist'])
+    masterlist(outfile, 'Collection', config['collectionlist'])
     assetlist(outfile, config['assetlist'])
     footer(outfile)
     outfile.close()
