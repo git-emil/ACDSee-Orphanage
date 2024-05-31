@@ -13,9 +13,9 @@ Orphanage was created to help new users, who plan to use AC for next couple of y
 In Oct 2019, I wanted upgrade my good old ACDSee Pro 8 with ACDSee ULtimate 2020. But after converting my database, I found that switching from manage mode to view mode with a single image took more then 30 seconds in AC Ultimate 2020 instead of less then 2 seconds with AC Pro 8. When monitoring the app with Sysinternals Process Monitor I recognized that the newer version was loading the whole master list of AC-keywords from the db everytime when switching from manage mode to view mode. So I decided to have a closer look.
 
 # How does Orphanage work
-ACDSee allows to import/export portions of the db in to text files. These text files may contain proprietary ACDSee meta data for images like categories, keywords, collections, caption, rating, label ... The file also may contain the master lists of definded keywords and categories, but not collections. These text files also do not support any face recognition data.
+ACDSee allows to import/export portions of the db in to text files. These text files may contain proprietary ACDSee meta data for images like categories, keywords, collections, caption, rating, label ... The file also may contain the master lists of definded keywords, categories and collections. They do not support any face recognition data.
 
-Orphange creates such a text file with adjustable amounts of keywords, categories and items. Items also may be assigned to adjustable numbers of keywords, categories and collections. Of course none of the items added to the database does realy exist; all items are orphanaed. Therefore the name of this script. 
+Orphange creates such a text file with adjustable amounts of keywords, categories and items. Items also may be assigned to adjustable numbers of keywords, categories and collections. Of course none of the items added to the database does realy exist; all items are orphaned. Therefore the name of this script. 
 
 # Abilities and incapability
 Orphange just ads orphans to an existing db with assigned keywords, categrois or collections. It does not add any EXIF, IPTC or XMP meta data nor any thumbnails. Hence, it of course doesn't tell the whole story, but for some it may give hints how AC will conduct on large databases. 
@@ -41,5 +41,5 @@ There's no guaranty for anything, you use it on your own risk!
 You may do with this script whatever you like. 
 
 
-Emil, 2019-10-10
+Emil, 2024-05-31
 
